@@ -1,8 +1,9 @@
-import {LoaderFunction, useLoaderData} from 'remix'
+import {LoaderFunction, redirect, useLoaderData} from 'remix'
 import {getLoggedInUser} from '~/sessions.server'
 
 export const loader: LoaderFunction = async ({request}) => {
   const user = await getLoggedInUser(request)
+  if (!user) throw redirect('/login')
   return user
 }
 
