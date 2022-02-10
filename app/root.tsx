@@ -77,7 +77,7 @@ function Document({
         <title>{title}</title>
         <Links />
       </head>
-      <body className=''>
+      <body className='text-white bg-black'>
         {children}
         <RouteChangeAnnouncement />
         <ScrollRestoration />
