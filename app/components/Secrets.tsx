@@ -11,7 +11,7 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
   const [, copy] = useClipboard()
 
   const handleCopy = async (id: string) => {
-    if (await copy(`${SITE_URL}/secrets/${id}`)) {
+    if (await copy(`${SITE_URL}/messages/${id}`)) {
       toast.success('Sharing URL copied to clipboard')
     } else {
       toast.error("Couldn't copy to clipboard")
