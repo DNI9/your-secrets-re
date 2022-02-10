@@ -1,0 +1,26 @@
+import {UserIcon} from '@heroicons/react/solid'
+import {Link} from 'remix'
+
+type Props = {
+  title: string
+}
+
+export const Nav = ({title = 'Secrets'}: Props) => {
+  return (
+    <nav className='flex items-center justify-between h-16 px-3 mb-2 bg-opacity-40 text-blue bg-gray'>
+      <Link to='/'>
+        <h1 className='text-3xl font-light cursor-pointer'>
+          <span className='font-semibold'>
+            {title.split('')[0].toUpperCase()}
+          </span>
+          {title.split('').slice(1).join('')}
+        </h1>
+      </Link>
+      <Link prefetch='intent' to='/profile'>
+        <div className='p-2 rounded-full cursor-pointer bg-blue bg-opacity-10 active:border-2 border-opacity-80'>
+          <UserIcon className='w-5 h-5 text-blue' />
+        </div>
+      </Link>
+    </nav>
+  )
+}
