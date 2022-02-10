@@ -1,4 +1,5 @@
 import {LockClosedIcon, ShareIcon} from '@heroicons/react/solid'
+import toast from 'react-hot-toast'
 import {Link} from 'remix'
 import useClipboard from '~/lib/useClipboard'
 import {SecretType} from '~/types'
@@ -11,9 +12,9 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
 
   const handleCopy = async (id: string) => {
     if (await copy(`${SITE_URL}/secrets/${id}`)) {
-      // toast.success('Sharing URL copied to clipboard')
+      toast.success('Sharing URL copied to clipboard')
     } else {
-      // toast.error("Couldn't copy to clipboard")
+      toast.error("Couldn't copy to clipboard")
     }
   }
 

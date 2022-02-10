@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {Toaster} from 'react-hot-toast'
 import type {LinksFunction, MetaFunction} from 'remix'
 import {
   Links,
@@ -79,6 +80,17 @@ function Document({
       </head>
       <body className='text-white bg-black'>
         {children}
+        <Toaster
+          toastOptions={{
+            position: 'bottom-center',
+            style: {
+              border: '1px solid #96CDFB',
+              padding: '5px 15px 5px',
+              background: '#131020',
+              color: '#D9E0EE',
+            },
+          }}
+        />
         <RouteChangeAnnouncement />
         <ScrollRestoration />
         <Scripts />
