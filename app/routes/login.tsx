@@ -1,11 +1,18 @@
 import {LoginIcon} from '@heroicons/react/outline'
-import {MetaFunction} from 'remix'
+import {LoaderFunction, MetaFunction, redirect} from 'remix'
+import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
 
 export const meta: MetaFunction = () => {
   return {
     title: 'Login',
   }
+}
+
+export const loader: LoaderFunction = async ({request}) => {
+  const user = await getLoggedInUser(request)
+  if (user) throw redirect('/')
+  return {}
 }
 
 export default function LogIn() {
