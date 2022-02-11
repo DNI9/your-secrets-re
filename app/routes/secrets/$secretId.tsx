@@ -1,18 +1,33 @@
-import {LoaderFunction, useLoaderData} from 'remix'
+import {LoaderFunction, redirect, useLoaderData} from 'remix'
 import {format} from 'timeago.js'
 import {EmptyMessage} from '~/components/EmptyMessage'
 import Layout from '~/components/Layout'
+import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
-import {MessageType} from '~/types'
+import {MessageType, SecretType} from '~/types'
 
 type LoaderData = {
   messages: Omit<MessageType, 'secret_id'>[] | null
 }
 
 export const loader: LoaderFunction = async ({params, request}) => {
+  const user = await getLoggedInUser(request)
+  if (!user) throw redirect('/login')
+
   const secretId = params.secretId
   if (!secretId || typeof secretId !== 'string')
     throw new Response('no secrets id is found', {status: 404})
+
+  const {data: secret} = await supabase
+    .from<SecretType>('secrets')
+    .select('created_by')
+    .eq('id', secretId)
+    .eq('created_by', user?.id)
+    .limit(1)
+    .single()
+
+  // if secret is null that means this user does not own this
+  if (!secret) throw redirect('/')
 
   // TODO: handle error with error boundary
   const {data: messages, error} = await supabase
