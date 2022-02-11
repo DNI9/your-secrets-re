@@ -9,4 +9,7 @@
   .sticky-nav {
     @apply sticky top-0 left-0 backdrop-blur-md;
   }
+  .disabled-button {
+    @apply disabled:bg-gray disabled:cursor-not-allowed;
+  }
 }

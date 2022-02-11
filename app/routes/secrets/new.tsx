@@ -1,5 +1,12 @@
 import {PostgrestError} from '@supabase/supabase-js'
-import {ActionFunction, Form, json, redirect, useActionData} from 'remix'
+import {
+  ActionFunction,
+  Form,
+  json,
+  redirect,
+  useActionData,
+  useTransition,
+} from 'remix'
 import Layout from '~/components/Layout'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
@@ -79,6 +86,7 @@ const ErrorMessage = ({data}: {data?: ActionData}) => {
 
 export default function NewSecret() {
   const actionData = useActionData<ActionData>()
+  const transition = useTransition()
 
   return (
     <Layout>
@@ -96,8 +104,12 @@ export default function NewSecret() {
           />
           <ErrorMessage data={actionData} />
           <button
+            disabled={
+              transition.state === 'loading' ||
+              transition.state === 'submitting'
+            }
             type='submit'
-            className='flex px-3 py-2 mt-5 font-medium text-black rounded-md bg-blue active:scale-95 disabled:bg-gray'
+            className='flex px-3 py-2 mt-5 font-medium text-black rounded-md bg-blue active:scale-95 disabled-button'
           >
             Submit
           </button>
