@@ -43,30 +43,28 @@ export const loader: LoaderFunction = async ({params, request}) => {
 export default function Secret() {
   const {messages} = useLoaderData<LoaderData>()
 
-  if (!messages?.length) {
-    return (
-      <EmptyMessage
-        message='no messages yet'
-        description='refresh or come back later'
-      />
-    )
-  }
-
   return (
     <Layout navTitle='Messages' stickyNav>
-      <div className='flex flex-col mt-5 space-y-2'>
-        {messages.map(({id, content, inserted_at}) => (
-          <div
-            key={id}
-            className='w-full px-3 py-2 text-white border-opacity-25 rounded-md hover:border active:border bg-black2 border-blue'
-          >
-            <h2>{content}</h2>
-            <p className='mt-1 text-xs text-white opacity-50 select-none'>
-              {format(inserted_at)}
-            </p>
-          </div>
-        ))}
-      </div>
+      <main className='flex flex-col mt-5 space-y-2'>
+        {!messages?.length ? (
+          <EmptyMessage
+            message='no messages yet'
+            description='refresh or come back later'
+          />
+        ) : (
+          messages.map(({id, content, inserted_at}) => (
+            <div
+              key={id}
+              className='w-full px-3 py-2 text-white border-opacity-25 rounded-md hover:border active:border bg-black2 border-blue'
+            >
+              <h2>{content}</h2>
+              <p className='mt-1 text-xs text-white opacity-50 select-none'>
+                {format(inserted_at)}
+              </p>
+            </div>
+          ))
+        )}
+      </main>
     </Layout>
   )
 }
