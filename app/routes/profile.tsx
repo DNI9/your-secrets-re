@@ -1,5 +1,6 @@
 import {LogoutIcon} from '@heroicons/react/outline'
 import {User} from '@supabase/supabase-js'
+import {useState} from 'react'
 import {LoaderFunction, MetaFunction, useLoaderData} from 'remix'
 import Layout from '~/components/Layout'
 import {getLoggedInUser, requireUserAccess} from '~/sessions.server'
@@ -25,7 +26,13 @@ export const loader: LoaderFunction = async ({request}) => {
 
 export default function Profile() {
   const data = useLoaderData<LoaderData>()
+  const [loading, setLoading] = useState(false)
   const user = data?.user?.user_metadata
+
+  const handleLogout = () => {
+    setLoading(true)
+    supabase.auth.signOut()
+  }
 
   if (!user) return <p>No user data available</p>
 
@@ -43,8 +50,9 @@ export default function Profile() {
           {user?.full_name || 'Hello Anon'}
         </h1>
         <button
-          onClick={() => supabase.auth.signOut()}
-          className='flex px-3 py-2 mt-8 space-x-2 font-medium text-black rounded-md bg-red active:scale-95'
+          onClick={handleLogout}
+          disabled={loading}
+          className='flex px-3 py-2 mt-8 space-x-2 font-medium text-black rounded-md bg-red active:scale-95 disabled:bg-gray'
         >
           <LogoutIcon className='w-6 h-6' />
           <p>Logout</p>
