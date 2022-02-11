@@ -1,6 +1,7 @@
 import {LoaderFunction, useLoaderData} from 'remix'
 import {format} from 'timeago.js'
 import {EmptyMessage} from '~/components/EmptyMessage'
+import Layout from '~/components/Layout'
 import {supabase} from '~/supabase'
 import {MessageType} from '~/types'
 
@@ -37,18 +38,20 @@ export default function Secret() {
   }
 
   return (
-    <div className='flex flex-col mt-5 space-y-2'>
-      {messages.map(({id, content, inserted_at}) => (
-        <div
-          key={id}
-          className='w-full px-3 py-2 text-white border-opacity-25 rounded-md hover:border active:border bg-black2 border-blue'
-        >
-          <h2>{content}</h2>
-          <p className='mt-1 text-xs text-white opacity-50 select-none'>
-            {format(inserted_at)}
-          </p>
-        </div>
-      ))}
-    </div>
+    <Layout navTitle='Messages'>
+      <div className='flex flex-col mt-5 space-y-2'>
+        {messages.map(({id, content, inserted_at}) => (
+          <div
+            key={id}
+            className='w-full px-3 py-2 text-white border-opacity-25 rounded-md hover:border active:border bg-black2 border-blue'
+          >
+            <h2>{content}</h2>
+            <p className='mt-1 text-xs text-white opacity-50 select-none'>
+              {format(inserted_at)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Layout>
   )
 }
