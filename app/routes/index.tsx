@@ -1,11 +1,12 @@
-import {PlusIcon} from '@heroicons/react/outline'
-import {User} from '@supabase/supabase-js'
-import {Link, LoaderFunction, redirect, useLoaderData} from 'remix'
-import {EmptyMessage} from '~/components/EmptyMessage'
-import {Secrets} from '~/components/Secrets'
-import {getLoggedInUser} from '~/sessions.server'
-import {supabase} from '~/supabase'
-import {SecretType} from '~/types'
+import { PlusIcon } from '@heroicons/react/outline'
+import { User } from '@supabase/supabase-js'
+import { Link, LoaderFunction, redirect, useLoaderData } from 'remix'
+import { EmptyMessage } from '~/components/EmptyMessage'
+import Layout from '~/components/Layout'
+import { Secrets } from '~/components/Secrets'
+import { getLoggedInUser } from '~/sessions.server'
+import { supabase } from '~/supabase'
+import { SecretType } from '~/types'
 
 type LoaderData = {
   user: User | null
@@ -31,22 +32,23 @@ export default function Index() {
   const {secrets} = useLoaderData<LoaderData>()
 
   return (
-    <main className='mt-5'>
-      {!secrets?.length ? (
-        <EmptyMessage
-          message='No secrets'
-          description='Create one with the button below'
-        />
-      ) : (
-        <Secrets secrets={secrets} />
-      )}
-
-      <Link
-        to='secrets/new'
-        className='fixed p-3 rounded-full cursor-pointer text-blue bottom-3 right-3 bg-blue bg-opacity-10 active:border-2 border-opacity-80'
-      >
-        <PlusIcon className='w-6 h-6' />
-      </Link>
-    </main>
+    <Layout>
+      <main className='mt-5'>
+        {!secrets?.length ? (
+          <EmptyMessage
+            message='No secrets'
+            description='Create one with the button below'
+          />
+        ) : (
+          <Secrets secrets={secrets} />
+        )}
+        <Link
+          to='secrets/new'
+          className='fixed p-3 rounded-full cursor-pointer text-blue bottom-3 right-3 bg-blue bg-opacity-10 active:border-2 border-opacity-80'
+        >
+          <PlusIcon className='w-6 h-6' />
+        </Link>
+      </main>
+    </Layout>
   )
 }

@@ -1,22 +1,20 @@
-import React, {useCallback} from 'react'
-import {useLocation} from 'remix'
+import React from 'react'
 import {Nav} from './Nav'
 
-const navExcludedPaths = ['/login']
+type Props = {
+  children: React.ReactNode
+  showNav?: boolean
+  navTitle?: string
+}
 
-export default function Layout({children}: {children: React.ReactNode}) {
-  const location = useLocation()
-
-  const checkLocation = useCallback(
-    () => !navExcludedPaths.includes(location.pathname),
-    [location.pathname]
-  )
-
-  const showNav = checkLocation()
-
+export default function Layout({
+  children,
+  showNav = true,
+  navTitle = 'Secrets',
+}: Props) {
   return (
     <>
-      {showNav ? <Nav title='Secrets' /> : null}
+      {showNav ? <Nav title={navTitle} /> : null}
       <div className='container min-h-full px-4 md:mx-auto'>{children}</div>
     </>
   )

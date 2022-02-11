@@ -11,7 +11,6 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from 'remix'
-import Layout from './components/Layout'
 import RouteChangeAnnouncement from './components/RouteChangeAnnouncement'
 import {getLoggedInUser} from './sessions.server'
 import styles from './styles/app.css'
@@ -111,9 +110,7 @@ export default function App() {
   return (
     <Document>
       <UserContextProvider>
-        <Layout>
-          <Outlet />
-        </Layout>
+        <Outlet />
       </UserContextProvider>
       <EnvironmentSetter env={ENV} />
     </Document>
