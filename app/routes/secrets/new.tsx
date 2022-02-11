@@ -3,12 +3,13 @@ import {
   ActionFunction,
   Form,
   json,
+  LoaderFunction,
   redirect,
   useActionData,
   useTransition,
 } from 'remix'
 import Layout from '~/components/Layout'
-import {getLoggedInUser} from '~/sessions.server'
+import {getLoggedInUser, requireUserAccess} from '~/sessions.server'
 import {supabase} from '~/supabase'
 import {SecretType} from '~/types'
 
@@ -82,6 +83,11 @@ const ErrorMessage = ({data}: {data?: ActionData}) => {
       ) : null}
     </>
   )
+}
+
+export const loader: LoaderFunction = async ({request}) => {
+  await requireUserAccess(request)
+  return {}
 }
 
 export default function NewSecret() {
