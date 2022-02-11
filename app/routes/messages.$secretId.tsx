@@ -29,7 +29,9 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, {status: 400})
 
 const validateMessage = (secret: string) => {
-  if (secret.length < 3) return 'Message must be greater than 3 characters'
+  if (secret.length < 3) return 'Message must be at least 3 characters long'
+  if (secret.length && secret.split(' ').length > 111)
+    return 'Message must be less than 100 words'
 }
 
 export const action: ActionFunction = async ({request, params}) => {
@@ -139,6 +141,7 @@ export default function Message() {
               disabled={
                 fetcher.state === 'submitting' || fetcher.state === 'loading'
               }
+              type='submit'
               className='flex px-3 py-2 mt-2 space-x-2 font-medium text-black rounded-md disabled:cursor-not-allowed bg-blue active:scale-95 disabled:bg-gray'
             >
               <PaperAirplaneIcon className='w-6 h-6 rotate-90' />
