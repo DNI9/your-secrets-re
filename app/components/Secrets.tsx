@@ -1,22 +1,25 @@
 import {LockClosedIcon, ShareIcon} from '@heroicons/react/solid'
+import {useEffect, useState} from 'react'
 import toast from 'react-hot-toast'
 import {Link} from 'remix'
 import useClipboard from '~/lib/useClipboard'
 import {SecretType} from '~/types'
 
-// TODO: change this
-const SITE_URL = 'http://localhost:3000'
-
 export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
   const [, copy] = useClipboard()
+  const [siteUrl, setSiteUrl] = useState('')
 
   const handleCopy = async (id: string) => {
-    if (await copy(`${SITE_URL}/messages/${id}`)) {
+    if (siteUrl && (await copy(`${siteUrl}messages/${id}`))) {
       toast.success('Sharing URL copied to clipboard', {id})
     } else {
       toast.error("Couldn't copy to clipboard", {id})
     }
   }
+
+  useEffect(() => {
+    if (window) setSiteUrl(window.location.href)
+  }, [])
 
   return (
     <div className='flex flex-col space-y-2'>
