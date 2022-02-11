@@ -6,4 +6,7 @@
   .error-text {
     @apply mt-1 text-sm text-red;
   }
+  .sticky-nav {
+    @apply sticky top-0 left-0 backdrop-blur-md;
+  }
 }

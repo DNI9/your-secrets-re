@@ -5,16 +5,18 @@ type Props = {
   children: React.ReactNode
   showNav?: boolean
   navTitle?: string
+  stickyNav?: boolean
 }
 
 export default function Layout({
   children,
   showNav = true,
   navTitle = 'Secrets',
+  stickyNav = false,
 }: Props) {
   return (
     <>
-      {showNav ? <Nav title={navTitle} /> : null}
+      {showNav ? <Nav title={navTitle} sticky={stickyNav} /> : null}
       <div className='container min-h-full px-4 md:mx-auto'>{children}</div>
     </>
   )

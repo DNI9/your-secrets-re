@@ -53,7 +53,7 @@ export default function Secret() {
   }
 
   return (
-    <Layout navTitle='Messages'>
+    <Layout navTitle='Messages' stickyNav>
       <div className='flex flex-col mt-5 space-y-2'>
         {messages.map(({id, content, inserted_at}) => (
           <div

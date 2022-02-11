@@ -3,11 +3,16 @@ import {NavLink} from 'remix'
 
 type Props = {
   title: string
+  sticky: boolean
 }
 
-export const Nav = ({title = 'Secrets'}: Props) => {
+export const Nav = ({title = 'Secrets', sticky}: Props) => {
   return (
-    <nav className='flex items-center justify-between h-16 px-3 mb-2 bg-opacity-40 text-blue bg-gray'>
+    <nav
+      className={`flex items-center justify-between h-16 px-3 mb-2 bg-opacity-40 text-blue bg-gray ${
+        sticky ? 'sticky-nav' : ''
+      }`}
+    >
       <NavLink prefetch='intent' to='/'>
         <h1 className='text-3xl font-light cursor-pointer'>
           <span className='font-semibold'>
