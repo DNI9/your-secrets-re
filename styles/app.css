@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .error-text {
+    @apply mt-1 text-sm text-red;
+  }
+}
