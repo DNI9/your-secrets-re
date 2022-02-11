@@ -12,9 +12,9 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
 
   const handleCopy = async (id: string) => {
     if (await copy(`${SITE_URL}/messages/${id}`)) {
-      toast.success('Sharing URL copied to clipboard')
+      toast.success('Sharing URL copied to clipboard', {id})
     } else {
-      toast.error("Couldn't copy to clipboard")
+      toast.error("Couldn't copy to clipboard", {id})
     }
   }
 
