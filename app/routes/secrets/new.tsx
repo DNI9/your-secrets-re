@@ -40,9 +40,14 @@ export const action: ActionFunction = async ({request}) => {
     return badRequest({fieldErrors, fields})
   }
 
-  const {error} = await supabase
-    .from<SecretType>('secrets')
-    .insert({secret_name: secret, created_by: user.id}, {returning: 'minimal'})
+  const {error} = await supabase.from<SecretType>('secrets').insert(
+    {
+      secret_name: secret,
+      created_by: user.id,
+      username: user.user_metadata.full_name,
+    },
+    {returning: 'minimal'}
+  )
 
   if (error) return badRequest({submitError: error})
 
