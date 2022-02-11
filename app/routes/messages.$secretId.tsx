@@ -197,7 +197,7 @@ export default function Message() {
             fillOpacity='0.2'
           />
         </svg>
-        <Link to='/' prefetch='intent'>
+        <Link to='/secrets/new' prefetch='intent'>
           <div className='fixed flex items-center space-x-2 text-sm text-white cursor-pointer bottom-3 right-5 opacity-70'>
             <p>Create your own</p>
             <ArrowSmRightIcon className='w-5 h-5' />
