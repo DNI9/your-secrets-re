@@ -44,7 +44,7 @@ export default function Index() {
         )}
         <Link
           to='secrets/new'
-          className='fixed p-3 rounded-full cursor-pointer text-blue bottom-3 right-3 bg-blue bg-opacity-10 active:border-2 border-opacity-80'
+          className='fixed p-3 rounded-full cursor-pointer text-blue bottom-5 right-5 bg-blue bg-opacity-10 active:border-2 border-opacity-80'
         >
           <PlusIcon className='w-6 h-6' />
         </Link>
