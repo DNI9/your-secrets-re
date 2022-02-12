@@ -39,7 +39,7 @@ export default function Profile() {
   return (
     <Layout navTitle='Profile'>
       <main className='flex flex-col items-center mt-10'>
-        <div className='w-24 mb-3 rounded-lg bg-black2 h-w-24'>
+        <div className='w-24 h-24 mb-3 rounded-lg bg-black2'>
           <img
             className='w-full rounded-lg'
             src={user.picture}
