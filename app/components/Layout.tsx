@@ -17,7 +17,9 @@ export default function Layout({
   return (
     <>
       {showNav ? <Nav title={navTitle} sticky={stickyNav} /> : null}
-      <div className='container min-h-full px-4 md:mx-auto'>{children}</div>
+      <div className='container min-h-full px-4 mx-auto md:max-w-lg lg:max-w-2xl'>
+        {children}
+      </div>
     </>
   )
 }
