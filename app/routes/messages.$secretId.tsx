@@ -149,7 +149,8 @@ export default function Message() {
             </button>
           </fetcher.Form>
           <p className='mt-3 text-xs text-gray2'>
-            *{user} will never know who wrote this message
+            * <strong className='tracking-wider'>{user}</strong> will never know
+            who wrote this message
           </p>
         </div>
         <svg
@@ -201,8 +202,8 @@ export default function Message() {
           />
         </svg>
         <Link to='/secrets/new' prefetch='intent'>
-          <div className='fixed flex items-center space-x-2 text-sm text-white cursor-pointer bottom-3 right-5 opacity-70'>
-            <p>Create your own</p>
+          <div className='fixed flex items-center px-3 py-2 space-x-2 text-sm rounded-md cursor-pointer bg-opacity-10 bg-blue text-blue bottom-3 right-5 opacity-70'>
+            <p className='font-medium'>Create your own</p>
             <ArrowSmRightIcon className='w-5 h-5' />
           </div>
         </Link>

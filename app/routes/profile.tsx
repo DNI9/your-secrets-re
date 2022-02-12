@@ -57,7 +57,7 @@ export default function Profile() {
           <LogoutIcon className='w-6 h-6' />
           <p>Logout</p>
         </button>
-        <p className='fixed text-white opacity-80 bottom-2'>
+        <p className='fixed text-white opacity-80 bottom-3'>
           Made with 💙 by{' '}
           <a href='https://github.com/dni9' target={'_blank'} rel='noreferrer'>
             <span className='font-medium tracking-wide cursor-pointer text-blue'>
