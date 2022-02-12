@@ -32,11 +32,20 @@ export let links: LinksFunction = () => {
   ]
 }
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({data}) => {
+  const siteUrl = data.ENV.PROD_SITE_URL
   const description = `Share anonymous messages with friends`
+  const title = 'Your Secrets | Share your Secret'
+
   return {
+    title,
     description,
     keywords: 'quiz,messages,friends,anonymous',
+    'og:type': 'website',
+    'og:url': `${siteUrl}`,
+    'og:title': title,
+    'og:description': description,
+    'og:image': `${siteUrl}/your-secrets-banner.jpg`,
   }
 }
 
@@ -48,6 +57,7 @@ export const loader: LoaderFunction = async ({request}) => {
   const ENV = {
     PUBLIC_SUPABASE_URL: process.env.PUBLIC_SUPABASE_URL,
     PUBLIC_SUPABASE_ANON_KEY: process.env.PUBLIC_SUPABASE_ANON_KEY,
+    PROD_SITE_URL: process.env.PROD_SITE_URL,
   }
 
   const user = await getLoggedInUser(request)
@@ -69,7 +79,7 @@ function EnvironmentSetter({env}: {env: {[key: string]: string}}) {
 
 function Document({
   children,
-  title = 'Your Secrets | Share anonymous messages',
+  title = 'Your Secrets | Share your Secret',
 }: {
   children: React.ReactNode
   title?: string

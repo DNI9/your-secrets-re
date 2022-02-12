@@ -7,12 +7,23 @@ import {
   json,
   Link,
   LoaderFunction,
+  MetaFunction,
   useFetcher,
   useLoaderData,
 } from 'remix'
 import Layout from '~/components/Layout'
 import {supabase} from '~/supabase'
 import {MessageType, SecretType} from '~/types'
+
+export const meta: MetaFunction = ({data}: {data: LoaderData}) => {
+  const user = data.secret?.username?.split(' ')[0]
+  const description = `Share a secret message to ${user} anonymously!`
+
+  return {
+    description,
+    'og:description': description,
+  }
+}
 
 type ActionData = {
   formError?: string
