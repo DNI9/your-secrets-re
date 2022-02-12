@@ -1,4 +1,5 @@
 import {LoginIcon} from '@heroicons/react/outline'
+import {useState} from 'react'
 import {LoaderFunction, MetaFunction, redirect} from 'remix'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
@@ -16,7 +17,10 @@ export const loader: LoaderFunction = async ({request}) => {
 }
 
 export default function LogIn() {
+  const [buttonPressed, setButtonPressed] = useState(false)
+
   const handleGoogleSignIn = () => {
+    setButtonPressed(true)
     supabase.auth.signIn({provider: 'google'})
   }
 
@@ -43,8 +47,9 @@ export default function LogIn() {
         <p className='text-lg text-blue opacity-80'>Create your own</p>
         <h1 className='text-6xl font-semibold text-white'>Secret message</h1>
         <button
+          disabled={buttonPressed}
           onClick={handleGoogleSignIn}
-          className='flex px-3 py-2 mt-5 space-x-2 font-medium text-black rounded-md bg-blue active:scale-95'
+          className='flex px-3 py-2 mt-5 space-x-2 font-medium text-black rounded-md bg-blue active:scale-95 disabled-button'
         >
           <LoginIcon className='w-6 h-6' />
           <p>Login with Google</p>
