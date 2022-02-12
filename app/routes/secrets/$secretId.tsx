@@ -29,12 +29,13 @@ export const loader: LoaderFunction = async ({params, request}) => {
   // if secret is null that means this user does not own this
   if (!secret) throw redirect('/')
 
-  // TODO: handle error with error boundary
   const {data: messages, error} = await supabase
     .from<MessageType>('messages')
     .select(`id,content,inserted_at`)
     .eq('secret_id', secretId)
     .order('inserted_at', {ascending: false})
+
+  if (error) throw error
 
   const data: LoaderData = {messages}
   return data

@@ -18,12 +18,13 @@ export const loader: LoaderFunction = async ({request}) => {
   const user = await getLoggedInUser(request)
   if (!user) return {}
 
-  // TODO: handle error error boundary
   const {data: secrets, error} = await supabase
     .from<SecretType>('secrets')
     .select(`id,secret_name,messages`)
     .eq('created_by', user.id)
     .order('updated_at', {ascending: false})
+
+  if (error) throw error
 
   const data: LoaderData = {secrets, user}
   return data

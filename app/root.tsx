@@ -1,16 +1,18 @@
 import * as React from 'react'
 import {Toaster} from 'react-hot-toast'
-import type {LinksFunction, MetaFunction} from 'remix'
 import {
   Links,
+  LinksFunction,
   LiveReload,
   LoaderFunction,
   Meta,
+  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
   useLoaderData,
 } from 'remix'
+import Layout from './components/Layout'
 import RouteChangeAnnouncement from './components/RouteChangeAnnouncement'
 import {getLoggedInUser} from './sessions.server'
 import styles from './styles/app.css'
@@ -113,6 +115,21 @@ export default function App() {
         <Outlet />
       </UserContextProvider>
       <EnvironmentSetter env={ENV} />
+    </Document>
+  )
+}
+
+export function ErrorBoundary({error}: {error: Error}) {
+  return (
+    <Document title='Uh-oh!'>
+      <Layout>
+        <div className='p-3 text-white rounded-md bg-black2'>
+          <h1 className='mb-2 text-2xl'>App Error</h1>
+          <pre className='p-3 rounded-md bg-red bg-opacity-10 text-red'>
+            {error.message}
+          </pre>
+        </div>
+      </Layout>
     </Document>
   )
 }
