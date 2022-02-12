@@ -31,7 +31,11 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
           <div className='p-3 rounded-full text-blue bg-blue bg-opacity-10'>
             <LockClosedIcon className='w-5 h-5' />
           </div>
-          <Link prefetch='intent' to={`/secrets/${secret.id}`}>
+          <Link
+            prefetch='intent'
+            to={`/secrets/${secret.id}`}
+            className='w-full'
+          >
             <div className='w-full ml-3 text-white cursor-pointer'>
               <h2 className='font-medium'>{secret.secret_name}</h2>
               <p className='text-sm text-white opacity-50'>
@@ -40,7 +44,7 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
             </div>
           </Link>
           <ShareIcon
-            className='w-5 h-5 ml-auto mr-2 cursor-pointer text-blue'
+            className='w-5 h-5 ml-3 mr-2 cursor-pointer text-blue'
             onClick={() => handleCopy(secret.id)}
           />
         </div>
