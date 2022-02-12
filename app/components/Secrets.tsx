@@ -44,7 +44,7 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
             </div>
           </Link>
           <ShareIcon
-            className='w-5 h-5 ml-3 mr-2 cursor-pointer text-blue'
+            className='w-6 h-6 ml-3 mr-2 cursor-pointer text-blue'
             onClick={() => handleCopy(secret.id)}
           />
         </div>

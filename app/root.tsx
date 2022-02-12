@@ -1,4 +1,6 @@
-import * as React from 'react'
+import NProgress from 'nprogress'
+import nProgressStyles from 'nprogress/nprogress.css'
+import {useEffect} from 'react'
 import {Toaster} from 'react-hot-toast'
 import {
   Links,
@@ -11,6 +13,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useTransition,
 } from 'remix'
 import Layout from './components/Layout'
 import RouteChangeAnnouncement from './components/RouteChangeAnnouncement'
@@ -25,6 +28,7 @@ export let links: LinksFunction = () => {
       href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
     },
     {rel: 'stylesheet', href: styles},
+    {rel: 'stylesheet', href: nProgressStyles},
   ]
 }
 
@@ -108,6 +112,17 @@ function Document({
  */
 export default function App() {
   const {ENV} = useLoaderData<RootLoader>()
+  const transition = useTransition()
+  NProgress.configure({
+    showSpinner: false,
+    speed: 700,
+    template: `<div class="bar" style="background: #96CDFB;" role="bar"><div class="peg"></div></div>`,
+  })
+
+  useEffect(() => {
+    if (transition.state === 'idle') NProgress.done()
+    else NProgress.start()
+  }, [transition.state])
 
   return (
     <Document>
