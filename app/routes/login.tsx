@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({request}) => {
   const user = await getLoggedInUser(request)
   if (user) throw redirect('/')
-  return {}
+  return {user}
 }
 
 export default function LogIn() {

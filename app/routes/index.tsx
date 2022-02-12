@@ -1,12 +1,13 @@
 import {PlusIcon} from '@heroicons/react/outline'
 import {User} from '@supabase/supabase-js'
-import {Link, LoaderFunction, redirect, useLoaderData} from 'remix'
+import {Link, LoaderFunction, useLoaderData} from 'remix'
 import {EmptyMessage} from '~/components/EmptyMessage'
 import Layout from '~/components/Layout'
 import {Secrets} from '~/components/Secrets'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
 import {SecretType} from '~/types'
+import {useUser} from '~/useUser'
 
 type LoaderData = {
   user: User | null
@@ -15,7 +16,7 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({request}) => {
   const user = await getLoggedInUser(request)
-  if (!user) throw redirect('/login')
+  if (!user) return {}
 
   // TODO: handle error error boundary
   const {data: secrets, error} = await supabase
@@ -30,6 +31,15 @@ export const loader: LoaderFunction = async ({request}) => {
 
 export default function Index() {
   const {secrets} = useLoaderData<LoaderData>()
+  const {session} = useUser()
+
+  if (!session) {
+    return (
+      <Layout>
+        <EmptyMessage message='Loading...' />
+      </Layout>
+    )
+  }
 
   return (
     <Layout>
