@@ -28,6 +28,7 @@ const badRequest = (data: ActionData) => json(data, {status: 400})
 
 const validateSecretName = (secret: string) => {
   if (secret.length < 4) return 'Name must be longer than 3 characters'
+  if (secret.length > 30) return 'Name must be smaller than 30 characters'
 }
 
 export const action: ActionFunction = async ({request}) => {
