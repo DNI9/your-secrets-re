@@ -20,6 +20,7 @@ export const meta: MetaFunction = ({data}: {data: LoaderData}) => {
   const description = `Share a secret message to ${user} anonymously!`
 
   return {
+    title: `Share your secret with ${user} | Your Secrets`,
     description,
     'og:description': description,
   }
