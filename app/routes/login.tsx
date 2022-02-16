@@ -1,27 +1,32 @@
 import {LoginIcon} from '@heroicons/react/outline'
 import {useState} from 'react'
-import {LoaderFunction, MetaFunction, redirect} from 'remix'
+import {LoaderFunction, MetaFunction, redirect, useLoaderData} from 'remix'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
 
-export const meta: MetaFunction = () => {
-  return {
-    title: 'Login',
-  }
-}
+export const meta: MetaFunction = () => ({title: 'Login to Your Secrets'})
 
 export const loader: LoaderFunction = async ({request}) => {
   const user = await getLoggedInUser(request)
   if (user) throw redirect('/')
-  return {user}
+  const siteUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : process.env.PROD_SITE_URL
+
+  return {user, siteUrl}
 }
 
 export default function LogIn() {
+  const data = useLoaderData()
   const [buttonPressed, setButtonPressed] = useState(false)
+
+  const siteUrl = data.siteUrl || 'http://localhost:3000'
+  const redirectTo = `${siteUrl}/oauth/callback`
 
   const handleGoogleSignIn = () => {
     setButtonPressed(true)
-    supabase.auth.signIn({provider: 'google'})
+    supabase.auth.signIn({provider: 'google'}, {redirectTo})
   }
 
   return (
