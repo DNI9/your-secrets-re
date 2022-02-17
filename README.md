@@ -3,7 +3,7 @@
 <h2 align="center">
     An web application made with remix, to share secret messages with friends
 </h2>
-<h3 align='center'>Other Tools</h3>
+<p align='center'>Other Tools</p>
 <p align="center">
 <a href="https://supabase.io/" target="_blank" rel="noreferrer">
 	<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="supabase" />
@@ -13,6 +13,9 @@
 </a>
 <a href="https://vercel.com/" target="_blank" rel="noreferrer">
 	<img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
+</a>
+<a href="https://figma.com/" target="_blank" rel="noreferrer">
+	<img src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white" alt="figma" />
 </a>
 </p>
 
