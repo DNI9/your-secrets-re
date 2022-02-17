@@ -128,10 +128,7 @@ export default function Message() {
 
   useEffect(() => {
     if (fetcher.type === 'done' && fetcher.data.ok) {
-      toast.success(
-        `Message sent to ${user}, Wait for his whatsapp status, LOL`,
-        {duration: 8000}
-      )
+      toast.success(`Message sent to ${user}`, {duration: 8000})
     }
   }, [fetcher.type])
 
