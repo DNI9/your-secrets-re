@@ -1,4 +1,11 @@
-import {LoaderFunction, redirect, useLoaderData} from 'remix'
+import {
+  Link,
+  LoaderFunction,
+  MetaFunction,
+  redirect,
+  useCatch,
+  useLoaderData,
+} from 'remix'
 import {format} from 'timeago.js'
 import {EmptyMessage} from '~/components/EmptyMessage'
 import Layout from '~/components/Layout'
@@ -8,6 +15,11 @@ import {MessageType, SecretType} from '~/types'
 
 type LoaderData = {
   messages: Omit<MessageType, 'secret_id'>[] | null
+}
+
+export const meta: MetaFunction = ({data}: {data: LoaderData | null}) => {
+  if (!data || !data.messages) return {title: 'Secret not found'}
+  return {title: 'Messages | Your Secrets'}
 }
 
 export const loader: LoaderFunction = async ({params, request}) => {
@@ -27,7 +39,7 @@ export const loader: LoaderFunction = async ({params, request}) => {
     .single()
 
   // if secret is null that means this user does not own this
-  if (!secret) throw redirect('/')
+  if (!secret) throw new Response('Not Found', {status: 404})
 
   const {data: messages, error} = await supabase
     .from<MessageType>('messages')
@@ -68,4 +80,36 @@ export default function Secret() {
       </main>
     </Layout>
   )
+}
+
+const NotFound = () => {
+  return (
+    <Layout>
+      <div className='fixed w-full px-4 text-center text-white transform -translate-x-1/2 select-none top-1/2 left-1/2'>
+        <p>¯\_(ツ)_/¯</p>
+        <h1 className='text-2xl'>Not Found</h1>
+        <p className='text-sm opacity-75'>
+          The secret you are looking for is not there or not yours :(
+        </p>
+        <Link to={'/'} prefetch='render'>
+          <p className='mt-5 text-sm text-blue'>&larr; go home</p>
+        </Link>
+      </div>
+    </Layout>
+  )
+}
+
+export function CatchBoundary() {
+  const caught = useCatch()
+
+  switch (caught.status) {
+    case 404: {
+      return <NotFound />
+    }
+    default: {
+      // if we don't handle this then all bets are off. Just throw an error
+      // and let the nearest ErrorBoundary handle this
+      throw new Error(`${caught.status} not handled`)
+    }
+  }
 }
