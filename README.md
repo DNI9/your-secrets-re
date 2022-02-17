@@ -1,16 +1,30 @@
-# Remix + Supabase OAuth + Vercel
+![screenshot](https://raw.githubusercontent.com/DNI9/your-secrets-re/main/public/your-secrets-banner.jpg)
 
-## Cloning
+<h2 align="center">
+    An web application made with remix, to share secret messages with friends
+</h2>
+<h3 align='center'>Other Tools</h3>
+<p align="center">
+<a href="https://supabase.io/" target="_blank" rel="noreferrer">
+	<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="supabase" />
+</a>
+<a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">
+	<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="tailwindcss" />
+</a>
+<a href="https://vercel.com/" target="_blank" rel="noreferrer">
+	<img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
+</a>
+</p>
 
-```sh
-git clone https://github.com/DNI9/remix-supabase.git
-```
+## Screenshots
 
-with Tailwind CSS
+|                        |                       |                             |
+| :--------------------: | :-------------------: | :-------------------------: |
+| ![](.assets/login.png) | ![](.assets/home.png) | ![](.assets/new_secret.png) |
 
-```sh
-git clone https://github.com/DNI9/remix-supabase.git -b with-tailwind
-```
+|                              |                                |                               |
+| :--------------------------: | :----------------------------: | :---------------------------: |
+| ![](.assets/new_message.png) | ![](.assets/messages_page.png) | ![](.assets/profile_page.png) |
 
 ## Development
 
@@ -48,9 +62,3 @@ vercel
 ```
 
 It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
-
-## Links
-
-Modified code from [VictorPeralta](https://github.com/VictorPeralta/supabase-remix-auth)
-
-[Remix Docs](https://remix.run/docs)
