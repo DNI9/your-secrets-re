@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "remix-app-template",
-  "description": "",
-  "license": "",
+  "name": "your-secrets",
+  "description": "Share secret messages with friends",
+  "license": "MIT",
   "scripts": {
     "build": "run-s -l clean build:css build:remix",
     "build:remix": "remix build",
