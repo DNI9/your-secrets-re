@@ -4,7 +4,7 @@
   "description": "Share secret messages with friends",
   "license": "MIT",
   "scripts": {
-    "build": "run-s -l clean build:css build:remix",
+    "build": "run-s -l clean lint build:css build:remix",
     "build:remix": "remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "run-p -l dev:css dev:remix",
