@@ -143,7 +143,7 @@ export default function Message() {
           <fetcher.Form method='post'>
             <textarea
               name='message'
-              className='w-full p-3 mt-5 text-white border rounded-md outline-none resize-none bg-black2 border-blue placeholder-gray2'
+              className='w-full p-3 mt-5 text-white border-2 rounded-md outline-none resize-none bg-black2 focus:border-blue border-gray2 placeholder-gray2'
               rows={6}
               placeholder='type your message here'
               autoFocus
