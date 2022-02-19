@@ -105,7 +105,7 @@ export default function NewSecret() {
             type='text'
             name='secret'
             autoFocus
-            placeholder='type a name, e.g another secret'
+            placeholder='type a name, e.g my little secret'
             defaultValue={actionData?.fields?.secret}
             className='w-full h-12 p-3 mt-3 text-white rounded-md outline-none bg-black2 focus:outline-blue'
           />
