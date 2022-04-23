@@ -1,23 +1,22 @@
 ![screenshot](https://raw.githubusercontent.com/DNI9/your-secrets-re/main/public/your-secrets-banner.jpg)
 
-<h2 align="center">
-    An web application made with remix, to share secret messages with friends
-</h2>
-<p align='center'>Other Tools</p>
-<p align="center">
-<a href="https://supabase.io/" target="_blank" rel="noreferrer">
-	<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="supabase" />
-</a>
-<a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">
-	<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="tailwindcss" />
-</a>
-<a href="https://vercel.com/" target="_blank" rel="noreferrer">
-	<img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
-</a>
-<a href="https://figma.com/" target="_blank" rel="noreferrer">
-	<img src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white" alt="figma" />
-</a>
-</p>
+<div align="center">
+  <h3 align="center">Your Secrets</h3>
+
+  <p align="center">
+    Create and share secret messages with friends
+    <br />
+    <a href="https://your-secrets.vercel.app"><strong>Open live app »</strong></a>
+  </p>
+	<a href="https://your-secrets.vercel.app">
+		<div align="center">
+			<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="supabase" />
+			<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="tailwindcss" />
+			<img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
+		<img src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white" alt="figma" />
+		</div>
+	</a>
+</div>
 
 ## Screenshots
 
