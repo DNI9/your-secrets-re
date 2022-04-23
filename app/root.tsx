@@ -59,7 +59,7 @@ export const meta: MetaFunction = ({data}) => {
     'og:url': `${siteUrl}`,
     'og:title': title,
     'og:description': description,
-    'og:image': `${siteUrl}/your-secrets-banner.jpg`,
+    'og:image': `${siteUrl}/your-secrets-banner.png`,
   }
 }
 
