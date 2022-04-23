@@ -1,4 +1,4 @@
-![screenshot](https://raw.githubusercontent.com/DNI9/your-secrets-re/main/public/your-secrets-banner.jpg)
+![screenshot](public/your-secrets-banner.png)
 
 <div align="center">
   <h3 align="center">Your Secrets</h3>
