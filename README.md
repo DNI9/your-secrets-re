@@ -10,6 +10,7 @@
   </p>
 	<a href="https://your-secrets.vercel.app">
 		<div align="center">
+			<img src="https://custom-icon-badges.herokuapp.com/badge/-Remix-blue?style=for-the-badge&logoColor=black&logo=remix-icon" alt="Remix" />
 			<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="supabase" />
 			<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="tailwindcss" />
 			<img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
