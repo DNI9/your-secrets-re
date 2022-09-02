@@ -100,7 +100,7 @@ export default function NewSecret() {
             type='submit'
             className='flex px-3 py-2 mt-5 font-medium text-black rounded-md bg-blue active:scale-95 disabled-button'
           >
-            Submit
+            Create secret
           </button>
         </Form>
       </main>
