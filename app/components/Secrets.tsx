@@ -8,17 +8,17 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
       {secrets.map(secret => (
         <div
           key={secret.id}
-          className='flex items-center justify-start w-full px-3 py-2 transition-colors duration-200 border rounded-md border-opacity-10 hover:border-opacity-50 active:border bg-black2 border-blue'
+          className='flex w-full items-center justify-start rounded-md border border-blue border-opacity-10 bg-black2 px-3 py-2 transition-colors duration-200 hover:border-opacity-50 active:border'
         >
-          <div className='p-3 rounded-full text-blue bg-blue bg-opacity-10'>
-            <LockClosedIcon className='w-5 h-5' />
+          <div className='rounded-full bg-blue bg-opacity-10 p-3 text-blue'>
+            <LockClosedIcon className='h-5 w-5' />
           </div>
           <Link
             prefetch='intent'
             to={`/secrets/${secret.id}`}
             className='w-full'
           >
-            <div className='w-full ml-3 text-white cursor-pointer'>
+            <div className='ml-3 w-full cursor-pointer text-white'>
               <h2 className='font-medium'>{secret.secret_name}</h2>
               <p className='text-sm text-white opacity-50'>
                 {secret.messages} messages
@@ -26,7 +26,7 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
             </div>
           </Link>
           <Link to={`/secrets/share/${secret.id}`} prefetch='intent'>
-            <ShareIcon className='w-6 h-6 ml-3 mr-2 cursor-pointer text-blue' />
+            <ShareIcon className='ml-3 mr-2 h-6 w-6 cursor-pointer text-blue' />
           </Link>
         </div>
       ))}

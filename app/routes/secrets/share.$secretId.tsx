@@ -17,7 +17,7 @@ const ShareIcon = ({
   return (
     <div
       onClick={action}
-      className='flex flex-col items-center justify-center p-3 space-y-3 rounded-md cursor-pointer active:scale-95 hover:bg-gray2 hover:bg-opacity-20'
+      className='flex cursor-pointer flex-col items-center justify-center space-y-3 rounded-md p-3 hover:bg-gray2 hover:bg-opacity-20 active:scale-95'
     >
       {children}
       <p className='text-xs'>{title}</p>
@@ -58,15 +58,15 @@ export default function ShareSecret() {
 
   return (
     <Layout>
-      <div className='fixed w-full max-w-md text-center transform -translate-x-1/2 left-1/2 bottom-5'>
-        <div className='relative p-3 mx-5 rounded-md bg-black2'>
+      <div className='fixed left-1/2 bottom-5 w-full max-w-md -translate-x-1/2 transform text-center'>
+        <div className='relative mx-5 rounded-md bg-black2 p-3'>
           <h1 className='text-3xl font-medium'>Share Your Secret</h1>
           <p className='px-3 text-sm text-white opacity-80'>
             Share this secret with friends, so that they can write something
             about you, but you won&apos;t know who wrote the message, It&apos;s
             FUN!
           </p>
-          <div className='flex justify-around py-2 my-5'>
+          <div className='my-5 flex justify-around py-2'>
             <a
               href={`https://api.whatsapp.com/send?text=Hi, send your secrets here ${copyUrl}`}
               data-action='share/whatsapp/share'
@@ -129,7 +129,7 @@ export default function ShareSecret() {
           <button
             onClick={() => navigate('/')}
             disabled={disabled}
-            className='px-5 py-2 text-sm font-medium tracking-widest rounded-md bg-gray active:scale-95 disabled-button'
+            className='disabled-button rounded-md bg-gray px-5 py-2 text-sm font-medium tracking-widest active:scale-95'
           >
             CLOSE
           </button>

@@ -39,8 +39,8 @@ export default function Profile() {
 
   return (
     <Layout navTitle='Profile'>
-      <main className='flex flex-col items-center mt-10'>
-        <div className='w-24 h-24 mb-3 rounded-lg bg-black2'>
+      <main className='mt-10 flex flex-col items-center'>
+        <div className='mb-3 h-24 w-24 rounded-lg bg-black2'>
           <img
             className='w-full rounded-lg'
             src={user.picture}
@@ -53,15 +53,15 @@ export default function Profile() {
         <button
           onClick={handleLogout}
           disabled={loading}
-          className='flex px-3 py-2 mt-8 space-x-2 font-medium text-black rounded-md bg-red active:scale-95 disabled:bg-gray'
+          className='mt-8 flex space-x-2 rounded-md bg-red px-3 py-2 font-medium text-black active:scale-95 disabled:bg-gray'
         >
-          <LogoutIcon className='w-6 h-6' />
+          <LogoutIcon className='h-6 w-6' />
           <p>Logout</p>
         </button>
-        <p className='fixed text-white bottom-3 opacity-80'>
+        <p className='fixed bottom-3 text-white opacity-80'>
           Made with 💙 by{' '}
           <a href='https://github.com/dni9' target={'_blank'} rel='noreferrer'>
-            <span className='font-medium tracking-wide cursor-pointer text-blue'>
+            <span className='cursor-pointer font-medium tracking-wide text-blue'>
               DNI9
             </span>
           </a>

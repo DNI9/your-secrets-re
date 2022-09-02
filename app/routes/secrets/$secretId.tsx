@@ -83,7 +83,7 @@ export default function Secret() {
 
   return (
     <Layout navTitle='Messages' stickyNav>
-      <main className='flex flex-col mt-5 space-y-2'>
+      <main className='mt-5 flex flex-col space-y-2'>
         <MessageList data={messages} />
         <Form method='delete'>
           <DeleteSecretButton
@@ -99,7 +99,7 @@ export default function Secret() {
 const NotFound = () => {
   return (
     <Layout>
-      <div className='fixed w-full px-4 text-center text-white transform -translate-x-1/2 select-none top-1/2 left-1/2'>
+      <div className='fixed top-1/2 left-1/2 w-full -translate-x-1/2 transform select-none px-4 text-center text-white'>
         <p>¯\_(ツ)_/¯</p>
         <h1 className='text-2xl'>Not Found</h1>
         <p className='text-sm opacity-75'>
@@ -116,14 +116,6 @@ const NotFound = () => {
 export function CatchBoundary() {
   const caught = useCatch()
 
-  switch (caught.status) {
-    case 404: {
-      return <NotFound />
-    }
-    default: {
-      // if we don't handle this then all bets are off. Just throw an error
-      // and let the nearest ErrorBoundary handle this
-      throw new Error(`${caught.status} not handled`)
-    }
-  }
+  if (caught.status === 404) return <NotFound />
+  else throw new Error(`${caught.status} not handled`)
 }

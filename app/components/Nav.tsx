@@ -9,12 +9,12 @@ type Props = {
 export const Nav = ({title = 'Secrets', sticky}: Props) => {
   return (
     <nav
-      className={`flex items-center justify-between h-16 px-3 mb-2 bg-opacity-40 text-blue bg-gray ${
+      className={`mb-2 flex h-16 items-center justify-between bg-gray bg-opacity-40 px-3 text-blue ${
         sticky ? 'sticky-nav' : ''
       }`}
     >
       <NavLink prefetch='intent' to='/'>
-        <h1 className='text-3xl font-light cursor-pointer'>
+        <h1 className='cursor-pointer text-3xl font-light'>
           <span className='font-semibold'>
             {title.split('')[0].toUpperCase()}
           </span>
@@ -22,8 +22,8 @@ export const Nav = ({title = 'Secrets', sticky}: Props) => {
         </h1>
       </NavLink>
       <NavLink prefetch='intent' to='/profile'>
-        <div className='p-2 rounded-full cursor-pointer bg-blue bg-opacity-10 active:border-2 border-opacity-80'>
-          <UserIcon className='w-5 h-5 text-blue' />
+        <div className='cursor-pointer rounded-full border-opacity-80 bg-blue bg-opacity-10 p-2 active:border-2'>
+          <UserIcon className='h-5 w-5 text-blue' />
         </div>
       </NavLink>
     </nav>

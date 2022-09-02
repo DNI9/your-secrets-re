@@ -132,8 +132,8 @@ export default function Message() {
 
   return (
     <Layout showNav={false}>
-      <main className='flex flex-col justify-center h-screen'>
-        <div className='md:container md:max-w-lg md:mx-auto'>
+      <main className='flex h-screen flex-col justify-center'>
+        <div className='md:container md:mx-auto md:max-w-lg'>
           <p className='text-lg text-blue opacity-80'>Write something</p>
           <h1 className='text-5xl font-semibold text-white md:text-6xl'>
             to {user}
@@ -141,7 +141,7 @@ export default function Message() {
           <fetcher.Form method='post'>
             <textarea
               name='message'
-              className='w-full p-3 mt-5 text-white border-2 rounded-md outline-none resize-none bg-black2 focus:border-blue border-gray2 placeholder-gray2'
+              className='mt-5 w-full resize-none rounded-md border-2 border-gray2 bg-black2 p-3 text-white placeholder-gray2 outline-none focus:border-blue'
               rows={6}
               placeholder='type your message here'
               autoFocus
@@ -152,9 +152,9 @@ export default function Message() {
                 fetcher.state === 'submitting' || fetcher.state === 'loading'
               }
               type='submit'
-              className='flex px-3 py-2 mt-2 space-x-2 font-medium text-black rounded-md disabled:cursor-not-allowed bg-blue active:scale-95 disabled:bg-gray'
+              className='mt-2 flex space-x-2 rounded-md bg-blue px-3 py-2 font-medium text-black active:scale-95 disabled:cursor-not-allowed disabled:bg-gray'
             >
-              <PaperAirplaneIcon className='w-6 h-6 rotate-90' />
+              <PaperAirplaneIcon className='h-6 w-6 rotate-90' />
               <p>Send</p>
             </button>
           </fetcher.Form>
@@ -212,9 +212,9 @@ export default function Message() {
           />
         </svg>
         <Link to='/secrets/new' prefetch='intent'>
-          <div className='fixed flex items-center px-3 py-2 space-x-2 text-sm rounded-md cursor-pointer bg-opacity-10 bg-blue text-blue bottom-3 right-5 opacity-70'>
+          <div className='fixed bottom-3 right-5 flex cursor-pointer items-center space-x-2 rounded-md bg-blue bg-opacity-10 px-3 py-2 text-sm text-blue opacity-70'>
             <p className='font-medium'>Create your own</p>
-            <ArrowSmRightIcon className='w-5 h-5' />
+            <ArrowSmRightIcon className='h-5 w-5' />
           </div>
         </Link>
       </main>

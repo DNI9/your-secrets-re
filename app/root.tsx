@@ -107,7 +107,7 @@ function Document({
         <title>{title}</title>
         <Links />
       </head>
-      <body className='text-white bg-black'>
+      <body className='bg-black text-white'>
         {children}
         <Toaster
           toastOptions={{
@@ -162,9 +162,9 @@ export function ErrorBoundary({error}: {error: Error}) {
   return (
     <Document title='Uh-oh!'>
       <Layout>
-        <div className='p-3 text-white rounded-md bg-black2'>
+        <div className='rounded-md bg-black2 p-3 text-white'>
           <h1 className='mb-2 text-2xl'>App Error</h1>
-          <pre className='p-3 rounded-md bg-red bg-opacity-10 text-red'>
+          <pre className='rounded-md bg-red bg-opacity-10 p-3 text-red'>
             {error.message}
           </pre>
         </div>

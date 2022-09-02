@@ -56,9 +56,9 @@ export default function LogIn() {
         <button
           disabled={buttonPressed}
           onClick={handleGoogleSignIn}
-          className='flex px-3 py-2 mt-5 space-x-2 font-medium text-black rounded-md bg-blue active:scale-95 disabled-button'
+          className='disabled-button mt-5 flex space-x-2 rounded-md bg-blue px-3 py-2 font-medium text-black active:scale-95'
         >
-          <LoginIcon className='w-6 h-6' />
+          <LoginIcon className='h-6 w-6' />
           <p>Login with Google</p>
         </button>
       </div>

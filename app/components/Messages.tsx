@@ -22,10 +22,10 @@ export const MessageList = ({data}: Props) => {
       {data.map(({id, content, inserted_at}) => (
         <div
           key={id}
-          className='w-full px-3 py-2 text-white transition-colors duration-200 border rounded-md border-opacity-10 hover:border-opacity-50 active:border bg-black2 border-blue'
+          className='w-full rounded-md border border-blue border-opacity-10 bg-black2 px-3 py-2 text-white transition-colors duration-200 hover:border-opacity-50 active:border'
         >
           <h2>{content}</h2>
-          <p className='mt-1 text-xs text-white opacity-50 select-none'>
+          <p className='mt-1 select-none text-xs text-white opacity-50'>
             {format(inserted_at)}
           </p>
         </div>

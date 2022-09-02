@@ -11,10 +11,10 @@ export const DeleteSecretButton = ({disabled = false, styles}: Props) => {
     <button
       disabled={disabled}
       type='submit'
-      className='flex px-3 py-2 my-5 space-x-2 font-medium text-black rounded-md bg-red active:scale-95 disabled-button'
+      className='disabled-button my-5 flex space-x-2 rounded-md bg-red px-3 py-2 font-medium text-black active:scale-95'
       style={styles}
     >
-      <TrashIcon className='w-5 h-5' />
+      <TrashIcon className='h-5 w-5' />
       <span>Delete secret</span>
     </button>
   )

@@ -89,7 +89,7 @@ export default function NewSecret() {
             autoFocus
             placeholder='type a name, e.g my little secret'
             defaultValue={actionData?.fields?.secret}
-            className='w-full h-12 p-3 mt-3 text-white rounded-md outline-none bg-black2 focus:outline-blue'
+            className='mt-3 h-12 w-full rounded-md bg-black2 p-3 text-white outline-none focus:outline-blue'
           />
           <ErrorMessage data={actionData} />
           <button
@@ -98,7 +98,7 @@ export default function NewSecret() {
               transition.state === 'submitting'
             }
             type='submit'
-            className='flex px-3 py-2 mt-5 font-medium text-black rounded-md bg-blue active:scale-95 disabled-button'
+            className='disabled-button mt-5 flex rounded-md bg-blue px-3 py-2 font-medium text-black active:scale-95'
           >
             Create secret
           </button>
