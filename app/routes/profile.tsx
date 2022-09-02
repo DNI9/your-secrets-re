@@ -1,7 +1,8 @@
 import {LogoutIcon} from '@heroicons/react/outline'
-import {User} from '@supabase/supabase-js'
+import type {LoaderFunction, MetaFunction} from '@remix-run/node'
+import {useLoaderData} from '@remix-run/react'
+import type {User} from '@supabase/supabase-js'
 import {useState} from 'react'
-import {LoaderFunction, MetaFunction, useLoaderData} from 'remix'
 import Layout from '~/components/Layout'
 import {getLoggedInUser, requireUserAccess} from '~/sessions.server'
 import {supabase} from '~/supabase'
@@ -43,7 +44,7 @@ export default function Profile() {
           <img
             className='w-full rounded-lg'
             src={user.picture}
-            alt={`Photo of ${user.full_name}`}
+            alt={`${user.full_name}`}
           />
         </div>
         <h1 className='text-4xl text-white'>

@@ -1,6 +1,8 @@
-import {Session} from '@supabase/supabase-js'
+import type {ActionFunction, MetaFunction} from '@remix-run/node'
+import {redirect} from '@remix-run/node'
+import {useSubmit} from '@remix-run/react'
+import type {Session} from '@supabase/supabase-js'
 import {useEffect} from 'react'
-import {ActionFunction, MetaFunction, redirect, useSubmit} from 'remix'
 import {createUserSession} from '~/sessions.server'
 import {supabase} from '~/supabase'
 

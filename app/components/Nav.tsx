@@ -1,5 +1,5 @@
 import {UserIcon} from '@heroicons/react/solid'
-import {NavLink} from 'remix'
+import {NavLink} from '@remix-run/react'
 
 type Props = {
   title: string

@@ -1,6 +1,7 @@
-import {AuthChangeEvent, Session, User} from '@supabase/supabase-js'
-import {createContext, ReactChild, useContext, useEffect, useState} from 'react'
-import {useFetcher} from 'remix'
+import {useFetcher} from '@remix-run/react'
+import type {AuthChangeEvent, Session, User} from '@supabase/supabase-js'
+import type {ReactChild} from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
 import {supabase} from './supabase'
 
 type UserContextType = {
@@ -45,6 +46,7 @@ export const UserContextProvider = ({children}: {children: ReactChild}) => {
     return () => {
       authListener?.unsubscribe()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -56,6 +58,7 @@ export const UserContextProvider = ({children}: {children: ReactChild}) => {
     // If session exists by now, set a cookie when app is reloaded, in case session was expired while app wasn't open
     // because session recovering/refreshing now happens on supabase constructor, before any onAuthStateChange events are emitted.
     if (session) fetchSessionCookie('SIGNED_IN', session)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const value: UserContextType = {user, session}

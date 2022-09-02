@@ -1,12 +1,14 @@
 import {PlusIcon} from '@heroicons/react/outline'
-import {User} from '@supabase/supabase-js'
-import {Link, LoaderFunction, redirect, useLoaderData} from 'remix'
+import type {LoaderFunction} from '@remix-run/node'
+import {redirect} from '@remix-run/node'
+import {Link, useLoaderData} from '@remix-run/react'
+import type {User} from '@supabase/supabase-js'
 import {EmptyMessage} from '~/components/EmptyMessage'
 import Layout from '~/components/Layout'
 import {Secrets} from '~/components/Secrets'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
-import {SecretType} from '~/types'
+import type {SecretType} from '~/types'
 
 type LoaderData = {
   user: User | null

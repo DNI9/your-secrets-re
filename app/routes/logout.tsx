@@ -1,5 +1,6 @@
+import type {LoaderFunction} from '@remix-run/node'
+import {useNavigate} from '@remix-run/react'
 import {useEffect} from 'react'
-import {LoaderFunction, useNavigate} from 'remix'
 import {clearCookie} from '~/sessions.server'
 import {supabase} from '~/supabase'
 import {useUser} from '~/useUser'
@@ -19,6 +20,7 @@ export default function Logout() {
     }
 
     logoutUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return null

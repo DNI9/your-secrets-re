@@ -1,19 +1,17 @@
 import {ArrowSmRightIcon, PaperAirplaneIcon} from '@heroicons/react/solid'
-import {PostgrestError} from '@supabase/supabase-js'
-import {useEffect} from 'react'
-import toast from 'react-hot-toast'
-import {
+import type {
   ActionFunction,
-  json,
-  Link,
   LoaderFunction,
   MetaFunction,
-  useFetcher,
-  useLoaderData,
-} from 'remix'
+} from '@remix-run/node'
+import {json} from '@remix-run/node'
+import {Link, useFetcher, useLoaderData} from '@remix-run/react'
+import type {PostgrestError} from '@supabase/supabase-js'
+import {useEffect} from 'react'
+import toast from 'react-hot-toast'
 import Layout from '~/components/Layout'
 import {supabase} from '~/supabase'
-import {MessageType, SecretType} from '~/types'
+import type {MessageType, SecretType} from '~/types'
 
 export const meta: MetaFunction = ({data}: {data: LoaderData}) => {
   const user = data.secret?.username?.split(' ')[0]
@@ -130,7 +128,7 @@ export default function Message() {
     if (fetcher.type === 'done' && fetcher.data.ok) {
       toast.success(`Message sent to ${user}`, {duration: 8000})
     }
-  }, [fetcher.type])
+  }, [fetcher, user])
 
   return (
     <Layout showNav={false}>

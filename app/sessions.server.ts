@@ -1,5 +1,5 @@
-import {User} from '@supabase/supabase-js'
-import {createCookieSessionStorage, json, redirect} from 'remix'
+import type {User} from '@supabase/supabase-js'
+import {createCookieSessionStorage, json, redirect} from '@remix-run/node'
 import {supabase} from './supabase'
 
 let sessionSecret = process.env.SESSION_SECRET

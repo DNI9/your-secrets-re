@@ -1,5 +1,5 @@
-import {AuthChangeEvent, Session} from '@supabase/supabase-js'
-import {ActionFunction} from 'remix'
+import type {ActionFunction} from '@remix-run/node'
+import type {AuthChangeEvent, Session} from '@supabase/supabase-js'
 import {clearCookie, createUserSession} from '~/sessions.server'
 
 /** Takes in an AuthChangeEvent and a supabase user session,

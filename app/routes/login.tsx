@@ -1,6 +1,8 @@
 import {LoginIcon} from '@heroicons/react/outline'
+import type {LoaderFunction, MetaFunction} from '@remix-run/node'
+import {redirect} from '@remix-run/node'
+import {useLoaderData} from '@remix-run/react'
 import {useState} from 'react'
-import {LoaderFunction, MetaFunction, redirect, useLoaderData} from 'remix'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
 

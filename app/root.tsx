@@ -1,20 +1,20 @@
+import type {LinksFunction, LoaderFunction, MetaFunction} from '@remix-run/node'
 import NProgress from 'nprogress'
 import nProgressStyles from 'nprogress/nprogress.css'
 import {useEffect} from 'react'
 import {Toaster} from 'react-hot-toast'
+
 import {
   Links,
-  LinksFunction,
   LiveReload,
-  LoaderFunction,
   Meta,
-  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
   useLoaderData,
   useTransition,
-} from 'remix'
+} from '@remix-run/react'
+
 import Layout from './components/Layout'
 import RouteChangeAnnouncement from './components/RouteChangeAnnouncement'
 import {getLoggedInUser} from './sessions.server'

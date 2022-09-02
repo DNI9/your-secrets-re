@@ -1,17 +1,12 @@
-import {
-  Link,
-  LoaderFunction,
-  MetaFunction,
-  redirect,
-  useCatch,
-  useLoaderData,
-} from 'remix'
+import type {LoaderFunction, MetaFunction} from '@remix-run/node'
+import {redirect} from '@remix-run/node'
+import {Link, useCatch, useLoaderData} from '@remix-run/react'
 import {format} from 'timeago.js'
 import {EmptyMessage} from '~/components/EmptyMessage'
 import Layout from '~/components/Layout'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
-import {MessageType, SecretType} from '~/types'
+import type {MessageType, SecretType} from '~/types'
 
 type LoaderData = {
   messages: Omit<MessageType, 'secret_id'>[] | null

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {useState} from 'react'
 
 type CopiedValue = string | null

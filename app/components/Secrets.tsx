@@ -1,6 +1,6 @@
 import {LockClosedIcon, ShareIcon} from '@heroicons/react/solid'
-import {Link} from 'remix'
-import {SecretType} from '~/types'
+import {Link} from '@remix-run/react'
+import type {SecretType} from '~/types'
 
 export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
   return (

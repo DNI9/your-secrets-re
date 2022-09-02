@@ -1,37 +1,19 @@
-import {PostgrestError} from '@supabase/supabase-js'
-import {
-  ActionFunction,
-  Form,
-  json,
-  LoaderFunction,
-  redirect,
-  useActionData,
-  useTransition,
-} from 'remix'
+import type {ActionArgs, LoaderArgs, SerializeFrom} from '@remix-run/node'
+import {json, redirect} from '@remix-run/node'
+import {Form, useActionData, useTransition} from '@remix-run/react'
 import Layout from '~/components/Layout'
 import {getLoggedInUser, requireUserAccess} from '~/sessions.server'
 import {supabase} from '~/supabase'
-import {SecretType} from '~/types'
+import type {SecretType} from '~/types'
 
-type ActionData = {
-  formError?: string
-  fieldErrors?: {
-    secret: string | undefined
-  }
-  fields?: {
-    secret: string
-  }
-  submitError?: PostgrestError
-}
-
-const badRequest = (data: ActionData) => json(data, {status: 400})
+const badRequest = (data: any) => json(data, {status: 400})
 
 const validateSecretName = (secret: string) => {
   if (secret.length < 4) return 'Name must be longer than 3 characters'
   if (secret.length > 30) return 'Name must be smaller than 30 characters'
 }
 
-export const action: ActionFunction = async ({request}) => {
+export async function action({request}: ActionArgs) {
   const user = await getLoggedInUser(request)
   if (!user) throw redirect('/')
   const form = await request.formData()
@@ -63,7 +45,12 @@ export const action: ActionFunction = async ({request}) => {
   return redirect('/')
 }
 
-const ErrorMessage = ({data}: {data?: ActionData}) => {
+export async function loader({request}: LoaderArgs) {
+  await requireUserAccess(request)
+  return {}
+}
+
+const ErrorMessage = ({data}: {data?: SerializeFrom<typeof action>}) => {
   return (
     <>
       {data?.fieldErrors?.secret ? (
@@ -86,13 +73,8 @@ const ErrorMessage = ({data}: {data?: ActionData}) => {
   )
 }
 
-export const loader: LoaderFunction = async ({request}) => {
-  await requireUserAccess(request)
-  return {}
-}
-
 export default function NewSecret() {
-  const actionData = useActionData<ActionData>()
+  const actionData = useActionData<typeof action>()
   const transition = useTransition()
 
   return (
