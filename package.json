@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "build": "run-s -l clean validate build:*",
-    "build:remix": "remix build",
     "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
     "dev": "run-p -l dev:*",
-    "dev:remix": "cross-env NODE_ENV=development remix dev",
     "dev:css": "cross-env NODE_ENV=development npm run generate:css -- --watch",
+    "dev:remix": "cross-env NODE_ENV=development remix dev",
     "start": "cross-env NODE_ENV=production node -r dotenv/config node_modules/.bin/remix-serve api/_build",
     "generate:css": "tailwindcss -i ./styles/app.css -o app/styles/app.css",
     "clean": "rimraf .cache api/_build public/build",
