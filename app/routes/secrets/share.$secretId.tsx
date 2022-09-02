@@ -1,7 +1,7 @@
-import type {ReactNode} from 'react'
-import toast from 'react-hot-toast'
 import type {LoaderFunction} from '@remix-run/node'
 import {useLoaderData, useNavigate, useTransition} from '@remix-run/react'
+import type {ReactNode} from 'react'
+import toast from 'react-hot-toast'
 import Layout from '~/components/Layout'
 import useClipboard from '~/lib/useClipboard'
 

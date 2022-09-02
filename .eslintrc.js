@@ -1,3 +1,4 @@
+/** @type {import('@types/eslint').Linter.BaseConfig} */
 module.exports = {
   env: {
     browser: true,
@@ -7,8 +8,9 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    // 'plugin:@typescript-eslint/recommended',
     '@remix-run/eslint-config',
+    '@remix-run/eslint-config/node',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -18,10 +20,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    // '@typescript-eslint'
-  ],
+  plugins: ['react'],
   rules: {
     'prefer-const': 'off',
     'no-console': 'warn',

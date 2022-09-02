@@ -15,7 +15,9 @@
     "clean": "rimraf .cache api/_build public/build",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ./app",
     "type-check": "tsc -b",
-    "validate": "run-p lint type-check"
+    "format": "prettier --write .",
+    "format-check": "prettier --check .",
+    "validate": "run-p -l lint format-check type-check"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
@@ -38,13 +40,15 @@
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "rimraf": "^3.0.2",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.8.2"
@@ -53,7 +57,8 @@
     "/node_modules",
     "/build",
     "/public/build",
-    "/postgres-data"
+    "/postgres-data",
+    "/api/_build"
   ],
   "engines": {
     "node": ">=14"
