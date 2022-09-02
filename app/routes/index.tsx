@@ -1,8 +1,7 @@
 import {PlusIcon} from '@heroicons/react/outline'
-import type {LoaderFunction} from '@remix-run/node'
-import {redirect} from '@remix-run/node'
+import type {LoaderArgs} from '@remix-run/node'
+import {json, redirect} from '@remix-run/node'
 import {Link, useLoaderData} from '@remix-run/react'
-import type {User} from '@supabase/supabase-js'
 import {EmptyMessage} from '~/components/EmptyMessage'
 import Layout from '~/components/Layout'
 import {Secrets} from '~/components/Secrets'
@@ -10,12 +9,7 @@ import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
 import type {SecretType} from '~/types'
 
-type LoaderData = {
-  user: User | null
-  secrets: SecretType[] | null
-}
-
-export const loader: LoaderFunction = async ({request}) => {
+export async function loader({request}: LoaderArgs) {
   const user = await getLoggedInUser(request)
   if (!user) return redirect('/login')
 
@@ -27,12 +21,11 @@ export const loader: LoaderFunction = async ({request}) => {
 
   if (error) throw error
 
-  const data: LoaderData = {secrets, user}
-  return data
+  return json({secrets, user})
 }
 
 export default function Index() {
-  const {secrets} = useLoaderData<LoaderData>()
+  const {secrets} = useLoaderData<typeof loader>()
 
   return (
     <Layout>
