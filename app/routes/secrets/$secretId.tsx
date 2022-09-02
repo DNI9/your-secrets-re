@@ -1,23 +1,26 @@
-import type {LoaderFunction, MetaFunction} from '@remix-run/node'
-import {redirect} from '@remix-run/node'
-import {Link, useCatch, useLoaderData} from '@remix-run/react'
-import {format} from 'timeago.js'
-import {EmptyMessage} from '~/components/EmptyMessage'
+import type {ActionArgs, LoaderArgs, MetaFunction} from '@remix-run/node'
+import {json, redirect, Response} from '@remix-run/node'
+import {
+  Form,
+  Link,
+  useCatch,
+  useLoaderData,
+  useTransition,
+} from '@remix-run/react'
+import type {CSSProperties} from 'react'
+import {DeleteSecretButton} from '~/components/DeleteSecretButton'
 import Layout from '~/components/Layout'
+import {MessageList} from '~/components/Messages'
 import {getLoggedInUser} from '~/sessions.server'
 import {supabase} from '~/supabase'
 import type {MessageType, SecretType} from '~/types'
 
-type LoaderData = {
-  messages: Omit<MessageType, 'secret_id'>[] | null
-}
-
-export const meta: MetaFunction = ({data}: {data: LoaderData | null}) => {
+export const meta: MetaFunction<typeof loader> = ({data}) => {
   if (!data || !data.messages) return {title: 'Secret not found'}
   return {title: 'Messages | Your Secrets'}
 }
 
-export const loader: LoaderFunction = async ({params, request}) => {
+export async function loader({params, request}: LoaderArgs) {
   const user = await getLoggedInUser(request)
   if (!user) throw redirect('/login')
 
@@ -44,34 +47,50 @@ export const loader: LoaderFunction = async ({params, request}) => {
 
   if (error) throw error
 
-  const data: LoaderData = {messages}
-  return data
+  return json({messages})
+}
+
+export async function action({params, request}: ActionArgs) {
+  if (request.method === 'DELETE') {
+    const secretId = params?.secretId
+    const user = await getLoggedInUser(request)
+    if (!user) throw redirect('/login')
+
+    await supabase
+      .from('secrets')
+      .update({deleted: true}, {returning: 'minimal'})
+      .match({id: secretId, created_by: user?.id})
+
+    return redirect('/')
+  }
+
+  return null
 }
 
 export default function Secret() {
-  const {messages} = useLoaderData<LoaderData>()
+  const {messages} = useLoaderData<typeof loader>()
+  const transition = useTransition()
+  const isDeleteButtonDisabled =
+    transition.state === 'loading' || transition.state === 'submitting'
+  const buttonStyles: CSSProperties = messages.length
+    ? {}
+    : {
+        position: 'fixed',
+        top: '65%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+      }
 
   return (
     <Layout navTitle='Messages' stickyNav>
       <main className='flex flex-col mt-5 space-y-2'>
-        {!messages?.length ? (
-          <EmptyMessage
-            message='no messages yet'
-            description='refresh or come back later'
+        <MessageList data={messages} />
+        <Form method='delete'>
+          <DeleteSecretButton
+            disabled={isDeleteButtonDisabled}
+            styles={buttonStyles}
           />
-        ) : (
-          messages.map(({id, content, inserted_at}) => (
-            <div
-              key={id}
-              className='w-full px-3 py-2 text-white border-opacity-25 rounded-md hover:border active:border bg-black2 border-blue'
-            >
-              <h2>{content}</h2>
-              <p className='mt-1 text-xs text-white opacity-50 select-none'>
-                {format(inserted_at)}
-              </p>
-            </div>
-          ))
-        )}
+        </Form>
       </main>
     </Layout>
   )

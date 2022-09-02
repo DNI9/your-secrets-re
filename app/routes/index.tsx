@@ -17,6 +17,7 @@ export async function loader({request}: LoaderArgs) {
     .from<SecretType>('secrets')
     .select(`id,secret_name,messages`)
     .eq('created_by', user.id)
+    .eq('deleted', false)
     .order('updated_at', {ascending: false})
 
   if (error) throw error

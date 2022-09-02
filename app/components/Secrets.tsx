@@ -8,7 +8,7 @@ export const Secrets = ({secrets}: {secrets: SecretType[]}) => {
       {secrets.map(secret => (
         <div
           key={secret.id}
-          className='flex items-center justify-start w-full px-3 py-2 border-opacity-25 rounded-md hover:border active:border bg-black2 border-blue'
+          className='flex items-center justify-start w-full px-3 py-2 transition-colors duration-200 border rounded-md border-opacity-10 hover:border-opacity-50 active:border bg-black2 border-blue'
         >
           <div className='p-3 rounded-full text-blue bg-blue bg-opacity-10'>
             <LockClosedIcon className='w-5 h-5' />

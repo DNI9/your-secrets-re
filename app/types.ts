@@ -5,6 +5,7 @@ export interface SecretType {
   secret_name: string
   created_by: string
   messages: number
+  deleted: boolean
 }
 
 export interface MessageType {
